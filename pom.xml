@@ -4,26 +4,22 @@
   <groupId>fr.univaix.iut.pokebattle</groupId>
   <artifactId>TwitterUserStreamEasy</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>Twitter UserStream Easy</name>
+  <description>Librairie pour simplifier l'accès à la librairie twitter/hbc pour les étudiants de l'IUT d'Aix-en-Provence</description>
   <url>https://github.com/IUTInfoAix/TwitterUserStreamEasy</url>
+
+  <modules>
+    <module>tuse-core</module>
+    <module>tuse-example</module>
+  </modules>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
-  
-  <distributionManagement>
-    <repository>
-      <id>repo</id>
-      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshot-repo</id>
-      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -38,4 +34,52 @@
       <version>1.3.0</version> 
     </dependency>
   </dependencies>
+
+  <scm>
+    <connection>scm:git@github.com:IUTInfoAix/TwitterUserStreamEasy.git</connection>
+    <url>scm:git@github.com:IUTInfoAix/TwitterUserStreamEasy.git</url>
+    <developerConnection>scm:git@github.com:IUTInfoAix/TwitterUserStreamEasy.git</developerConnection>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Sébastien NEDJAR</name>
+      <email>sebastien.nedjar@univ-amu.fr</email>
+    </developer>
+    <developer>
+      <name>Phillipe CREUX</name>
+      <email>phillipe.creux@univ-amu.fr</email>
+    </developer>
+  </developers>
+
+  <distributionManagement>
+    <repository>
+      <id>repo</id>
+      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshot-repo</id>
+      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>PokeBattleRepo</id>
+      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+     </repository>
+  </repositories>
 </project>
