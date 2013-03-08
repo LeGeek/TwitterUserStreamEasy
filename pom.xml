@@ -13,6 +13,18 @@
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
+  
+  <distributionManagement>
+    <repository>
+      <id>repo</id>
+      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshot-repo</id>
+      <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
