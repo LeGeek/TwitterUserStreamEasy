@@ -6,8 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import twitter4j.*;
 
-public class UserStreamAdapter implements UserstreamHandler{
+public class UserStreamAdapter implements UserstreamHandler {
     private final static Logger logger = LoggerFactory.getLogger(UserStreamAdapter.class);
+
     @Override
     public void onDisconnectMessage(DisconnectMessage disconnectMessage) {
         logger.info("Unimplemented event handler: onDisconnectMessage");

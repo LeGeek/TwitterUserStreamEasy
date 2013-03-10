@@ -65,8 +65,8 @@ public class TwitterUserStreamEasy {
         }
     }
 
-    public void oauth()  throws InterruptedException, ControlStreamException, IOException {
+    public void oauth() throws InterruptedException, ControlStreamException, IOException {
         Configuration configuration = ConfigurationContext.getInstance();
-        oauth(configuration.getOAuthConsumerKey(),configuration.getOAuthConsumerSecret(),configuration.getOAuthAccessToken(), configuration.getOAuthAccessTokenSecret());
+        oauth(configuration.getOAuthConsumerKey(), configuration.getOAuthConsumerSecret(), configuration.getOAuthAccessToken(), configuration.getOAuthAccessTokenSecret());
     }
 }
