@@ -50,11 +50,6 @@ public class UserStreamAdapter implements UserstreamHandler {
     }
 
     @Override
-    public void onRetweet(User source, User target, Status retweetedStatus) {
-        logger.info("Unimplemented event handler: onRetweet");
-    }
-
-    @Override
     public void onDirectMessage(DirectMessage directMessage) {
         logger.info("Unimplemented event handler: onDirectMessage");
     }
@@ -127,6 +122,11 @@ public class UserStreamAdapter implements UserstreamHandler {
     @Override
     public void onScrubGeo(long userId, long upToStatusId) {
         logger.info("Unimplemented event handler: onScrubGeo");
+    }
+
+    @Override
+    public void onStallWarning(StallWarning warning) {
+        logger.info("Unimplemented event handler: onStallWarning");
     }
 
     @Override
