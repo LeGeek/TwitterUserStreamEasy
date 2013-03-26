@@ -23,10 +23,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class TwitterUserStreamEasy {
     private UserStreamListener listener;
+    private Credentials credentials;
 
     public TwitterUserStreamEasy(UserStreamListener listener) {
         this.listener = listener;
     }
+
+    public TwitterUserStreamEasy(UserStreamListener listener, Credentials credentials) {
+        this.listener = listener;
+        this.credentials = credentials;
+    }
+
 
     public void oauth(String consumerKey, String consumerSecret, String token, String tokenSecret)
             throws InterruptedException, ControlStreamException, IOException {
@@ -66,7 +73,12 @@ public class TwitterUserStreamEasy {
     }
 
     public void oauth() throws InterruptedException, ControlStreamException, IOException {
-        Configuration configuration = ConfigurationContext.getInstance();
-        oauth(configuration.getOAuthConsumerKey(), configuration.getOAuthConsumerSecret(), configuration.getOAuthAccessToken(), configuration.getOAuthAccessTokenSecret());
+        if(credentials == null)
+            oauth(credentials.getConsumerKey(), credentials.getConsumerSecret(), credentials.getToken(), credentials.getTokenSecret());
+        else
+        {
+            Configuration configuration = ConfigurationContext.getInstance();
+            oauth(configuration.getOAuthConsumerKey(), configuration.getOAuthConsumerSecret(), configuration.getOAuthAccessToken(), configuration.getOAuthAccessTokenSecret());
+        }
     }
 }
