@@ -73,7 +73,7 @@ public class TwitterUserStreamEasy {
     }
 
     public void oauth() throws InterruptedException, ControlStreamException, IOException {
-        if(credentials == null)
+        if(credentials != null)
             oauth(credentials.getConsumerKey(), credentials.getConsumerSecret(), credentials.getToken(), credentials.getTokenSecret());
         else
         {
