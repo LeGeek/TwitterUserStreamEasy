@@ -12,8 +12,6 @@ import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
 import com.twitter.hbc.twitter4j.Twitter4jUserstreamClient;
 import twitter4j.UserStreamListener;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationContext;
 
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
@@ -25,6 +23,12 @@ public class TwitterUserStreamEasy {
     private UserStreamListener listener;
     private Credentials credentials;
 
+    /**
+     * @deprecated Not for public use.
+     *             This method don't initialize the credentials and could be responsible of a NullPointerException.
+     *             Replaced by {@link #TwitterUserStreamEasy(UserStreamListener, Credentials)}
+     */
+    @Deprecated
     public TwitterUserStreamEasy(UserStreamListener listener) {
         this.listener = listener;
     }
@@ -35,7 +39,7 @@ public class TwitterUserStreamEasy {
     }
 
 
-    public void oauth(String consumerKey, String consumerSecret, String token, String tokenSecret)
+    private void oauth(String consumerKey, String consumerSecret, String token, String tokenSecret)
             throws InterruptedException, ControlStreamException, IOException {
         // Create an appropriately sized blocking queue
         BlockingQueue<String> queue = new LinkedBlockingQueue<String>(10000);
@@ -72,13 +76,16 @@ public class TwitterUserStreamEasy {
         }
     }
 
+    public void oauth(Credentials credentials)
+            throws InterruptedException, ControlStreamException, IOException {
+        oauth(credentials.getConsumerKey(), credentials.getConsumerSecret(), credentials.getToken(), credentials.getTokenSecret());
+    }
+
     public void oauth() throws InterruptedException, ControlStreamException, IOException {
-        if(credentials != null)
-            oauth(credentials.getConsumerKey(), credentials.getConsumerSecret(), credentials.getToken(), credentials.getTokenSecret());
-        else
-        {
-            Configuration configuration = ConfigurationContext.getInstance();
-            oauth(configuration.getOAuthConsumerKey(), configuration.getOAuthConsumerSecret(), configuration.getOAuthAccessToken(), configuration.getOAuthAccessTokenSecret());
+        if (credentials != null)
+            oauth(credentials);
+        else {
+            throw new RuntimeException("Credentials shouldn't be null. Use the constructor TwitterUserStreamEasy(UserStreamListener, Credentials)  instead of #TwitterUserStreamEasy(UserStreamListener)");
         }
     }
 }
