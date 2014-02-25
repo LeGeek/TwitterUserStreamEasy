@@ -7,130 +7,131 @@ import org.slf4j.LoggerFactory;
 import twitter4j.*;
 
 public class UserStreamAdapter implements UserstreamHandler {
-    private final static Logger logger = LoggerFactory.getLogger(UserStreamAdapter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserStreamAdapter.class);
+    private static final String UNIMPLEMENTED_EVENT_HANDLER = "Unimplemented event handler: ";
 
     @Override
     public void onDisconnectMessage(DisconnectMessage disconnectMessage) {
-        logger.info("Unimplemented event handler: onDisconnectMessage");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onDisconnectMessage");
     }
 
     @Override
     public void onUnfollow(User user, User user2) {
-        logger.info("Unimplemented event handler: onUnfollow");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUnfollow");
     }
 
     @Override
     public void onUnknownMessageType(String s) {
-        logger.info("Unimplemented event handler: onUnknownMessageType");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUnknownMessageType");
     }
 
     @Override
     public void onDeletionNotice(long directMessageId, long userId) {
-        logger.info("Unimplemented event handler: onDeletionNotice");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onDeletionNotice");
     }
 
     @Override
     public void onFriendList(long[] friendIds) {
-        logger.info("Unimplemented event handler: onFriendList");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onFriendList");
     }
 
     @Override
     public void onFavorite(User source, User target, Status favoritedStatus) {
-        logger.info("Unimplemented event handler: onFavorite");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onFavorite");
     }
 
     @Override
     public void onUnfavorite(User source, User target, Status unfavoritedStatus) {
-        logger.info("Unimplemented event handler: onUnfavorite");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUnfavorite");
     }
 
     @Override
     public void onFollow(User source, User followedUser) {
-        logger.info("Unimplemented event handler: onFollow");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onFollow");
     }
 
     @Override
     public void onRetweet(User source, User target, Status retweetedStatus) {
-        logger.info("Unimplemented event handler: onRetweet");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onRetweet");
     }
 
     @Override
     public void onDirectMessage(DirectMessage directMessage) {
-        logger.info("Unimplemented event handler: onDirectMessage");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onDirectMessage");
     }
 
     @Override
     public void onUserListMemberAddition(User addedMember, User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListMemberAddition");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListMemberAddition");
     }
 
     @Override
     public void onUserListMemberDeletion(User deletedMember, User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListMemberDeletion");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListMemberDeletion");
     }
 
     @Override
     public void onUserListSubscription(User subscriber, User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListSubscription");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListSubscription");
     }
 
     @Override
     public void onUserListUnsubscription(User subscriber, User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListUnsubscription");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListUnsubscription");
     }
 
     @Override
     public void onUserListCreation(User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListCreation");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListCreation");
     }
 
     @Override
     public void onUserListUpdate(User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListUpdate");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListUpdate");
     }
 
     @Override
     public void onUserListDeletion(User listOwner, UserList list) {
-        logger.info("Unimplemented event handler: onUserListDeletion");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserListDeletion");
     }
 
     @Override
     public void onUserProfileUpdate(User updatedUser) {
-        logger.info("Unimplemented event handler: onUserProfileUpdate");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUserProfileUpdate");
     }
 
     @Override
     public void onBlock(User source, User blockedUser) {
-        logger.info("Unimplemented event handler: onBlock");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onBlock");
     }
 
     @Override
     public void onUnblock(User source, User unblockedUser) {
-        logger.info("Unimplemented event handler: onUnblock");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUnblock");
     }
 
     @Override
     public void onStatus(Status status) {
-        logger.info("Unimplemented event handler: onStatus");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onStatus");
     }
 
     @Override
     public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
-        logger.info("Unimplemented event handler: onDeletionNotice");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onDeletionNotice");
     }
 
     @Override
     public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-        logger.info("Unimplemented event handler: onTrackLimitationNotice");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onTrackLimitationNotice");
     }
 
     @Override
     public void onScrubGeo(long userId, long upToStatusId) {
-        logger.info("Unimplemented event handler: onScrubGeo");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onScrubGeo");
     }
 
     @Override
     public void onException(Exception ex) {
-        logger.info("Unimplemented event handler: onException");
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onException");
     }
 }

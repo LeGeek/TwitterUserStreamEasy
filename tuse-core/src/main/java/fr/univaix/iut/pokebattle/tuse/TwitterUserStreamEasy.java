@@ -25,8 +25,8 @@ public class TwitterUserStreamEasy {
 
     /**
      * @deprecated Not for public use.
-     *             This method don't initialize the credentials and could be responsible of a NullPointerException.
-     *             Replaced by {@link #TwitterUserStreamEasy(UserStreamListener, Credentials)}
+     * This method don't initialize the credentials and could be responsible of a NullPointerException.
+     * Replaced by {@link #TwitterUserStreamEasy(UserStreamListener, Credentials)}
      */
     @Deprecated
     public TwitterUserStreamEasy(UserStreamListener listener) {
@@ -76,16 +76,18 @@ public class TwitterUserStreamEasy {
         }
     }
 
-    public void oauth(Credentials credentials)
-            throws InterruptedException, ControlStreamException, IOException {
-        oauth(credentials.getConsumerKey(), credentials.getConsumerSecret(), credentials.getToken(), credentials.getTokenSecret());
+    public void oauth(Credentials credentials) throws TUSEException {
+        try {
+            oauth(credentials.getConsumerKey(), credentials.getConsumerSecret(), credentials.getToken(), credentials.getTokenSecret());
+        } catch (InterruptedException | ControlStreamException | IOException e) {
+            throw new TUSEException("OAUTH Error, the credentials must be invalid or nonexistent", e);
+        }
     }
 
-    public void oauth() throws InterruptedException, ControlStreamException, IOException {
-        if (credentials != null)
-            oauth(credentials);
-        else {
-            throw new RuntimeException("Credentials shouldn't be null. Use the constructor TwitterUserStreamEasy(UserStreamListener, Credentials)  instead of #TwitterUserStreamEasy(UserStreamListener)");
+    public void oauth() throws TUSEException {
+        if (credentials == null) {
+            throw new TUSERuntimeException("Credentials shouldn't be null. Use the constructor TwitterUserStreamEasy(UserStreamListener, Credentials)  instead of #TwitterUserStreamEasy(UserStreamListener)");
         }
+        oauth(credentials);
     }
 }

@@ -26,6 +26,7 @@
         <consumer.secret>TODO</consumer.secret>
         <access.token>TODO</access.token>
         <access.token.secret>TODO</access.token.secret>
+        <built.repo.dir>${project.build.directory}/repo</built.repo.dir>
     </properties>
 
     <dependencies>
@@ -50,14 +51,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

@@ -20,6 +20,7 @@
         <git.dir>${project.basedir}/../.git</git.dir>
         <!-- this makes maven-tools not bump us to snapshot versions -->
         <stabilized>true</stabilized>
+        <built.repo.dir>${project.build.directory}/repo</built.repo.dir>
     </properties>
 
     <dependencies>

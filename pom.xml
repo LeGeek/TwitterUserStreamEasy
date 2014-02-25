@@ -20,8 +20,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <built.repo.dir>${project.build.directory}/repo</built.repo.dir>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <dependencies>
@@ -57,33 +59,75 @@
             <name>Sébastien NEDJAR</name>
             <email>sebastien.nedjar@univ-amu.fr</email>
         </developer>
+
+        <developer>
+            <name>Benoît GANTAUME</name>
+            <email>benoit.gantaume@univ-amu.fr</email>
+        </developer>
+
         <developer>
             <name>Phillipe CREUX</name>
             <email>phillipe.creux@univ-amu.fr</email>
         </developer>
     </developers>
 
-    <distributionManagement>
-        <repository>
-            <id>repo</id>
-            <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshot-repo</id>
-            <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${built.repo.dir}</altDeploymentRepository>
+                </configuration>
+            </plugin>
 
-    <repositories>
-        <repository>
-            <id>PokeBattleRepo</id>
-            <url>https://github.com/IUTInfoAix/PokeBattleRepo/raw/master/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+            <!-- alternatively, you could also use the org.apache.maven.plugins:maven-scm-plugin,
+                like e.g. https://github.com/tonnymadsen/ui-bindings/blob/master/com.rcpcompany.updatesite/pom.xml
+                does -->
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.9</version>
+                <configuration>
+                    <!-- git commit message -->
+                    <message>Maven artifacts for ${project.groupId}:${project.artifactId}:${project.version}
+                        ~${maven.build.timestamp}
+                    </message>
+                    <noJekyll>true</noJekyll>
+                    <!-- disable webpage processing -->
+                    <outputDirectory>${built.repo.dir}</outputDirectory>
+                    <!-- This isn't perfect, because every old SNAPSHOT is kept.. -->
+                    <merge>true</merge>
+
+                    <!-- <dryRun>true</dryRun> -->
+                    <repositoryOwner>IUTInfoAix</repositoryOwner>
+                    <!-- github username -->
+                    <repositoryName>PokeBattleRepo</repositoryName>
+                    <!-- github repo name -->
+                    <branch>refs/heads/gh-pages</branch>
+                    <!-- remote branch name -->
+                    <path>maven/snapshots</path>
+
+                    <!-- This token, obtained from https://github.com/settings/applications,
+                        encrypted using http://about.travis-ci.org/docs/user/build-configuration/#Secure-environment-variables,
+                        is like a password; encrypt & guard it carefully! -->
+                    <oauth2Token>${env.TOKEN}</oauth2Token>
+
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <!-- run site-maven-plugin's 'site' target as part of the build's normal
+                        'deploy' phase -->
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
