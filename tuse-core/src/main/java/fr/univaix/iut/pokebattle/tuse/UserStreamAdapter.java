@@ -1,7 +1,8 @@
 package fr.univaix.iut.pokebattle.tuse;
 
-import com.twitter.hbc.twitter4j.handler.UserstreamHandler;
-import com.twitter.hbc.twitter4j.message.DisconnectMessage;
+import com.twitter.hbc.twitter4j.v3.handler.UserstreamHandler;
+import com.twitter.hbc.twitter4j.v3.message.DisconnectMessage;
+import com.twitter.hbc.twitter4j.v3.message.StallWarningMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import twitter4j.*;
@@ -18,6 +19,11 @@ public class UserStreamAdapter implements UserstreamHandler {
     @Override
     public void onUnfollow(User user, User user2) {
         LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onUnfollow");
+    }
+
+    @Override
+    public void onStallWarningMessage(StallWarningMessage stallWarningMessage) {
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onStallWarningMessage");
     }
 
     @Override
@@ -128,6 +134,11 @@ public class UserStreamAdapter implements UserstreamHandler {
     @Override
     public void onScrubGeo(long userId, long upToStatusId) {
         LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onScrubGeo");
+    }
+
+    @Override
+    public void onStallWarning(StallWarning stallWarning) {
+        LOGGER.info(UNIMPLEMENTED_EVENT_HANDLER + "onStallWarning");
     }
 
     @Override
